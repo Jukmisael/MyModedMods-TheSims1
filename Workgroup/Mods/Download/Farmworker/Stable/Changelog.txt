@@ -1,0 +1,1 @@
+- Telefone e algumas falas traduzidas
