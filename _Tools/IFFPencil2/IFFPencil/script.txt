@@ -1,0 +1,809 @@
+; Scripted Simantics Translation file
+; Written by Tom van Dijk, 2002
+; Expanded by 'Shy', 2002, 2003
+
+; Test version
+; Use 'File' / 'Load custom script.txt'
+
+; main subroutine: 9 parameters: 0 = function, 1..8 = parameters/data
+main(9) = [
+:%0==0
+:prim0(%1)
+:%0==1
+:prim1(%1)
+:%0==2
+:prim2(%7,short(%2,%1),%8,short(%4,%3),%6)
+:%0==3 || %0==4 || %0==5 || %0==30
+:text(139,%0) & " ()"
+:%0==6
+:prim6(%1,%2,%3)
+:%0==7
+:prim7(%1,%3)
+:%0==8
+:prim8(%%)
+:%0==9
+:prim9(%%)
+:%0==10
+:prim10(%%)
+:%0==11
+:prim11(short(%2,%1),%3,%4,short(%6,%5))
+:%0==12
+:prim12(short(%2,%1),%3,%5,%6,short(%8,%7))
+:%0==13
+:prim13(%1,%2,%3,%4,%5)
+:%0==14
+:prim14(%%)
+:%0==15
+:prim15(short(%2,%1),%3)
+:%0==16
+:prim16(%1,%2,%3)
+:%0==17
+:prim17(%1,short(%4,%3))
+:%0==18
+:prim18(%%)
+:%0==19
+:prim19(%1,%2,%3)
+:%0==20
+:prim20(%%)
+:%0==21
+:prim21(short(%2,%1),short(%4,%3))
+:%0==22
+:prim22(%1)
+:%0==23
+:prim23(short(%2,%1),short(%4,%3),%5,%6)
+:%0==24
+:prim24(%1,%2,%3,%4,%5)
+:%0==25
+:prim25(%1,%2,short(%4,%3),%5,%7)
+:%0==26
+:prim26(%%)
+:%0==27
+:prim27(%%)
+:%0==28
+:prim28(short(%2,%1),%3,%5,%6)
+:%0==29
+:prim29(%%)
+:%0==31
+:prim31(%%)
+:%0==32
+:prim32(%%)
+:%0==33
+:prim33(short(%6,%5),short(%8,%7))
+:%0==34
+:prim34(%1,%2,short(%4,%3),%5)
+:%0==35
+:prim35(short(%2,%1),%3,%4,%5,%6)
+:%0==36
+:prim36(%%)
+:%0==37
+:text(139,37) & " (me with stack obj.)"
+:%0==41
+:prim41(%1,%3,%4,short(%6,%5),%7,%8)
+:%0==42
+:prim42(%%)
+:%0==43
+:prim43(short(%2,%1),short(%4,%3),short(%6,%5),short(%8,%7))
+:%0==44
+:prim44(short(%2,%1),%3,%5,%6,%7)
+:%0==45
+:prim45(short(%2,%1),short(%4,%3),%5)
+:%0==46
+:prim46(short(%2,%1),short(%4,%3),%5)
+:%0==47
+:prim47(short(%2,%1),short(%4,%3),short(%6,%5))
+:%0==48
+:prim48(short(%2,%1))
+:%0==49
+:text(139,49) & " (...)"
+:%0==50
+:prim50(short(%2,%1),%5)
+:%0==51
+:prim51(%%)
+:%0>=0 && %0<=255:text(139,%0) & " (" & hex(%1) & " " & hex(%2) & " " & hex(%3) & " " & hex(%4) & " " & hex(%5) & " " & hex(%6) & " " & hex(%7) & " " & hex(%8) & ")"
+::default(%%)];
+
+
+; decoder for the 'sleep' primitive
+prim0(1) = text(139,0) & " (for ticks in " & data(9,%0) & ")";
+
+; decoder for the 'Generic Sims Call' primitive
+prim1(1) = text(139,1) & " (" & text(220,%0) & ")";
+
+; decoder for the 'expression' primitive
+prim2(5) = data(%0,%1) & " " & text(136,%4) & " " &
+[
+; For all flags
+: %2==7 && %4>7 && %4<11 && %3>0
+: [
+;    for Flags Field (1)
+   :(%0==3 || %0==4 || %0==5) && %1==8 :text(142,%3-1)
+;    for Flags Field 2
+   :(%0==3 || %0==4 || %0==5) && %1==40:text(214,%3-1)
+;    for Placement Flags
+   :(%0==3 || %0==4 || %0==5) && %1==42:text(202,%3-1)
+;    for Movement Flags
+   :(%0==3 || %0==4 || %0==5) && %1==43:text(203,%3-1)
+;    for Wall Placement Flags
+   :(%0==3 || %0==4 || %0==5) && %1==13:text(229,%3-1)
+;    for Exclusive Placement Flags
+   :(%0==3 || %0==4 || %0==5) && %1==63:text(251,%3-1)
+;    for Wall Adjacency Flags
+   :(%0==3 || %0==4 || %0==5) && %1==5: text(208,%3-1)
+;    for Censorship  Flags
+   :(%0==18 || %0==19 || %0==32) && %1==30: text(178,%3-1)
+;    for Game Edition Flags
+   :%0==6 && %1==20: text(252,%3-1)
+;    default behavior (if not any flag)
+   ::data(%2,%3)
+  ]
+; default behavior
+::data(%2,%3)
+];
+
+; decoder for the 'Change Suit/Accessory' primitive
+prim6(3) = text(139,6) & " (" &
+[
+:and(1,%2) == 0 : "add "
+:: "remove "
+] & "id=" & %0 & " from " & text(227,%1) & " suits)";
+
+
+; decoder for the 'Refresh' primitive
+prim7(2) = text(139,7) & " (" & text(211,%0) & " " & text(212,%1) & ")";
+
+; decoder for the 'random' primitive
+prim8(9) = data(%3,short(%2,%1)) & ":=random from 0 to < " & data(%7,short(%6,%5));
+
+; decoder for the 'burn' primitive
+prim9(9) = text(139,%0) & " (" &  text(231,%1) &
+[
+:and(%2,1)==1:", allow busy objects"
+::""
+] & ")";
+
+; decoder for the 'tutorial' primitive
+prim10(9) = text(139,%0) & " (" &  text(238,%1) & ")";
+
+; decoder for the 'Get Distance To' primitive
+prim11(4) = text(139,11) & " (" & data(8,%0) & " := distance from " &
+[
+:%1 == 0 : data(3,11)
+:and(%1,1) == 0 : data(%2,11)
+:and(%1,1) == 1 : data(%2,%3)
+] & " to stack obj)";
+
+; decoder for the 'Get Direction To' primitive
+prim12(5) = text(139,12) & " (" & data(%1,%0) & " := dir from " &
+[
+:%2 == 0 : data(3,11)
+:and(%2,1) == 0 : data(%3,11)
+:and(%2,1) == 1 : data(%3,%4)
+] & " to stack obj)";
+
+; decoder for the 'Push Interaction' primitive
+prim13(5) = text(139,13) &" (#" & %0 & " of " &
+[
+:and(2,%3)==0 : data(9,%1)
+::data(25,%1)
+] & " onto the stack object's queue, " & text(224,%2) &
+[
+:and(1,%3)==1 : ", use icon from " & data(25,%4)
+::""
+] &
+[
+:and(4,%3)==4 : ", continue as current"
+::""
+] &
+[
+:and(8,%3)==8 : ", use name"
+::""
+]
+& ")";
+
+
+; decoder for the 'Find Best Object for Function' primitive
+prim14(9) = text(139,%0) & " (" & text(201,%1) & ")";
+
+; decoder for the 'Break Point' primitive
+prim15(2) = text(139,15) & " (if " & data(%1,%0) & "!=0)";
+
+; decoder for the 'Find Location For' primitive
+prim16(3) = text(139,16) & " (" &
+[
+:(%0 != 0) : text(239,%0)
+::""
+] &
+[
+:and(1,%2) == 1 : [:(%0 != 0) :", " ::""] & "start at " & data(25,%1)
+::""
+] &
+[
+:and(4,%2) == 4 : ", user editable"
+::""
+] &
+[
+:and(2,%2) == 0 : ", prefer empty"
+] & ")";
+
+; decoder for the 'Idle for Input' primitive
+prim17(2) = text(139,17) & " (for ticks in " & data(9,%0) &
+[
+: %1 == 0 : ", do not allow push"
+:: ", allow push"
+] & ")";
+
+
+; decoder for remove object instance
+prim18(9) = text(139,%0) & " (" & text(156,%1)&
+[
+:and(1,%3)==1 :", return immediately"
+::""
+] &
+[
+:and(2,%3)==2 :", cleanup all"
+::""
+]
+&")";
+
+; decoder for the 'Make New Character' primitive
+prim19(3) = text(139,19) & " (" & data(25,%1) & ", " & data(25,%2) & ", "
+& data(25,%0) & ")";
+
+
+; decoder for run functional tree
+prim20(9) = text(139,%0)&" ("&text(201,%1) &
+[
+:and(1,%3)==1 : ", change icon"
+::""
+]
+& ")";
+
+; decoder for the 'Show String' primitive
+prim21(2) = text(139,21) & " (STR#" & %0 & ":" & (%1-1) & ")";
+
+; decoder for the 'Look Towards' primitive
+prim22(1) = text(139,22) & " (" & text(216,%0) & ")";
+
+; decoder for the 'Play Sound Event' primitive
+prim23(4) = text(139,23) & " (id=" & %0 &
+[
+:and(16,%2) == 16 : ", auto vary"
+::""
+] &
+[
+:and(1,%2) == 1 : ", looped"
+::""
+] &
+[
+:and(2,%2) == 2 : ", with stack obj as source"
+::""
+] &
+[
+:and(4,%2) == 4 : ", no zoom"
+::""
+] &
+[
+:and(8,%2) == 8 : ", no pan"
+::""
+] &
+[
+:%3 != 0 : ", volume "  & %3
+::""
+] & ")";
+
+
+; decoder for the 'old relationship' primitive
+prim24(5) = text(139,24) & " (" &
+[
+:%0 == 0 :  data(9,%2) & " := " & "var " & %1 & " of " & text(170,%3)
+::"var " & %1 & " of " & text(170,%3) & " := " & data(9,%2)
+] &
+[
+:and(1,%4) == 1 : ", fail if too small"
+::""
+] &
+[
+:and(2,%4) == 2 : ", use neighbors"
+::""
+] & ")";
+
+
+; decoder for the 'Alter Budget' primitive
+prim25(5)=text(139,25) & " (" &
+[
+:and(3,%3) == 0 : "subtract " &  data(prim25owner(%0,%1),%2)
+:and(3,%3) == 1 : "test if " &  data(prim25owner(%0,%1),%2) & " may be subtracted"
+:and(3,%3) == 2 : "add " & data(prim25owner(%0,%1),%2)
+:and(3,%3) == 3 : "test if " &  data(prim25owner(%0,%1),%2) & " may be added"
+] & " as " & text(240,%4) & ")";
+
+prim25owner(2)=[
+:%0 == 0 : 7
+:%0 == 1 : 9
+:%0 == 2 : 25
+::%1
+];
+
+
+; decoder for the 'relationship' primitive
+prim26(9) = text(139,%0) & " (" &
+[
+:and(4,%3) == 0 : data(%5,short(%8,%7)) & " := " & prim26var(%1,%2,%4)
+:and(4,%3) == 4 : prim26var(%1,%2,%4) & " := " & data(%5,short(%8,%7))
+] &
+[
+:and(1,%3) == 1 : ", fail if too small"
+::""
+] &
+[
+:and(2,%3) == 2 : ", use neighbors"
+::""
+] & ")";
+
+
+; See var %0 name in STR# 258 from *.stx
+prim26var(3) = "var " & %0 & " of " &
+[
+: %1<=1 : text(235,%1)
+: %1==2 : "stack object to " & data(25, %2)
+: %1==3 : data(25, %2) & " to stack object"
+::""
+];
+
+
+; decoder for goto relative
+;prim27(9) = text(139,%0)&", Location = '"&text(130,%3+2)&"', Direction = '"&text(131,%4+2)&"'";
+prim27(9) = text(139,%0)&" ("&text(130,%3+2)&", "&text(131,%4+2)&
+[
+:and(2,%7)==2 :", no failure trees"
+::""
+]
+&")"
+& " {byte = " & hex(%5) &
+", flags = " & (and(1,%7)) & ", " & (and(4,%7)/4) & "}";
+
+
+; decoder for the 'Run Tree by Name' primitive
+prim28(4) = text(139,28) & " (" &
+[
+:and(1,%1)==0: "Private: "
+:and(1,%1)==1: "Global: "
+] &
+"STR#" & %0 & ", id#" & (%2-1) & ", " & text(222,%3) & ")";
+
+
+; decoder for the 'Set Motive Change' primitive
+prim29(9) = text(139,%0) & " (" &
+[
+:and(%4,1) == 0 : data(14,%3) & " += " & data(%1,short(%6,%5)) &
+                  " per hr, stop at " & data(%2,short(%8,%7))
+:and(%4,1) == 1 : "clear all"
+]
+& ")";
+
+; decoder for set to next
+prim31(9) = text(139,%0) &" ("&
+[
+:%6!=10 || %8!=0 && and(128,%5)==128
+:data(%6,%8)&" := next "
+::""
+]
+& text(164,and(127,%5)) &
+[
+:and(127,%5)==4 || and(127,%5)==7 :" "&guid(%1,%2,%3,%4)
+:and(127,%5)==9 :data(25,%7)
+::""
+]
+&")";
+
+; decoder for the 'Test Object Type' primitive
+prim32(9) = text(139,%0) &" ("&
+"type of " & data(%7,short(%6,%5)) & " == " & guid(%1,%2,%3,%4) & ")";
+
+; decoder for the 'Find 5 Worst Motives' primitive
+prim33(2) = text(139,33) & " (" & text(153,%0) & " lowest " &
+text(165,%1) & " into temps 0-4)";
+
+; decoder for the 'UI Effect' primitive
+prim34(4) = text(139,34) & " (" &
+[
+:and(1,%3) == 1 : "turn on "
+::"turn off "
+] &
+text(247,%0) & " " &
+; see "UIGraphics\Res_CPanel.h"
+data(%1,%2) & ")";
+
+; decoder for the 'Special Effect' primitive
+prim35(5) = text(139,35) & " (" &
+[
+:and(1,%3) == 0 :"un-show stack obj"
+::"show stack obj, timeout := " &
+[
+:and(32,%3) == 0 : data(7,%0)
+:: data(25,%0)
+] &
+[
+:%4 != 0 :", caption: STR#305:" & (%4-1)
+::""
+] &
+[
+:and(2,%3) == 0 : ", one frame"
+::", live"
+] &
+[
+:and(4,%3) == 4 :", ignore visibility"
+::""
+] &
+[
+:and(16,%3) == 0 :", no snapshot"
+::", snapshot"
+] &
+[
+:%2 == 1 :", near"
+:%2 == 2 :", mid"
+:%2 == 3 :", far"
+::""
+] & " zoom" &
+[
+:%1 == 0 :", small"
+:%1 == 1 :", medium"
+:%1 == 2 :", large"
+::""
+] & " window" &
+[
+:and(64,%3) == 64 :", slow down"
+::""
+] &
+[
+:and(8,%3) == 8 :", center"
+::""
+]
+] & ")";
+
+
+; decoder for the 'Dialog' primitive
+prim36(9) = text(139,%0) &
+[
+:%6 == 5 :" Temp[0] := Get Downtown Lot."
+:%6 == 7 :" Temp[0] := Get Vacation Lot."
+:%6 == 10 :" PhoneBook: Temp[0] = Get Neighbor to Call."
+:: " ("&
+[
+:%6 == 0 :"message: "
+:%6 == 1 :"choice: "
+:%6 == 2 : data(8,(and(112,%8)/16)) & " := tri choice: "
+:%6 == 3 :"text entry: "
+:%6 == 4 :"tutorial: "
+::""
+] &
+; all 'id' from STR#301
+[
+:%3 != 0 :"id#" & (%3-1)
+::"string error"
+] &
+[
+:and(1,%8)+(and(128,%8)/64) != 0 : ", " & text(237,and(1,%8)+(and(128,%8)/64))
+::""
+] &
+[
+:and(14,%8) == 2 :""
+:and(14,%8) == 8 :", icon: " &
+[
+:%2 != 0 :"id#" & (%2-1)
+; ???
+::"name " & %2
+]
+:and(14,%8) == 6 :", icon: " & "BMP_#" & (5000+%2)
+::", icon: " & text(244,and(14,%8)/2)
+] & ")" &
+[
+:%6 == 6 || %6 == 8 || %6 == 9 : " {" & text(217,%6) & "}"
+] &
+[
+:%7 != 0 :" {Title: id#" & (%7-1) & "}"
+::""
+] &
+[
+:(%4 != 0) && (%6 == 0 || %6 == 3 || %6 == 4) :" {'OK': id#" & (%4-1) & "}"
+::""
+] &
+[
+:(%4 != 0) && (%6 == 1 || %6 == 2 || %6 == 6 || %6 == 8 || %6 == 9) :" {'Yes': id#" & (%4-1) & "}"
+::""
+] &
+[
+:(%5 != 0) && (%6 == 1 || %6 == 2 || %6 == 6 || %6 == 8 || %6 == 9) :" {'No': id#" & (%5-1) & "}"
+::""
+] &
+[
+:(%1 != 0) && (%6 == 2) :" {'Cancel': id#" & (%1-1) & "}"
+::""
+]
+];
+
+; decoder for the 'Set Balloon/Headline' primitive
+prim41(6) = text(139,41)&" (" &
+[
+:%3 == 0 :"clear"
+::
+[
+:%2 == 0 : text(502,%1)
+:%2 == 1 : text(505,%1)
+:(%2 > 2) && (%2 < 6) : text(499+%2,%1)
+:(%2 > 5) && (%2 < 10) : text(500+%2,%1)
+::"Group " & %2 & " : " & "Icon " & %1
+] &
+[
+:(%2 == 7) && (%1 == 2) :" " & data(25,shr(%0,1))
+] &
+[
+:and(16,%5) == 16 :" + " & data(8,0)
+::""
+] &  " in " & text(162,%4) & " balloon " &
+[
+:%3 == -1 : "forever"
+:: "for " & %3 & [:and(8,%5) == 0 :" ticks" ::" loops"] &
+[
+:and(1,%5) == 1 :", show when inactive"
+::""
+] &
+[
+:and(2,%5) == 2 :", crossed out"
+::""
+] &
+[
+:and(4,%5) == 4 :", anim reversed"
+::""
+]
+]
+] & ")"
+& " {for " & text(160,and(1,%0)) & "}";
+
+
+; decoder for create new object instance
+prim42(9) = text(139,%0) & " (" &
+[
+:and(4,%6) == 4 :"neighbor in stack obj."
+::guid(%1,%2,%3,%4)
+]
+& ", place " & text(167,%5) &
+[
+:%5==8 || %5==9 : " " & data(25,%7)
+::""
+] &
+[
+:and(18,%6) == 2 || and(18,%6) == 18 : ", pass object ids to main"
+:and(18,%6)==16 : ", pass temp 0 to main"
+::""
+] &
+[
+:and(9,%6)==1 || and(9,%6)==9 : ", do not duplicate"
+:and(9,%6)==8 : ", fail if tile is non-empty"
+::""
+] &
+")" &
+; ??
+" {flag = " & (and(32,%6)/32) & "}";
+
+; decoder for the 'Drop Onto' primitive
+prim43(4) = text(139,43) & " (from slot " &
+[
+:%0 == 0 :%1
+::data(9,%1)
+] & " to slot " &
+[
+:%2 == 0 :%3
+::data(9,%3)
+] & ")";
+
+
+; decoder for animate sim
+prim44(5) = text(139,44) & " (" &
+[
+; reset
+: and(4,%3)==0  && %0==0 : "reset" &
+[
+: and(17,%3)==1 :" , background"
+: and(17,%3)==16 :", carry"
+::""
+] & ")"
+; standard
+::
+[
+:and(4,%3)==0
+:"id "
+::"id in s.v. "
+]
+& %0 & " from " &
+[
+:%2==0 :"object"
+;Global.iff: STR# ID=128 Animations?
+:%2==1 :"old global"
+;Global.iff: STR# ID=130 PersonAnimations?
+:%2==2 :"old person"
+;Global.iff: STR# ID=156 MiscAdult, STR# ID=157 MiscChild?
+:%2==3 :"misc"
+::"???"
+] &
+[
+:%4 != 0 :" events:"& %4
+::""
+] &
+[
+: and(2,%3) == 2 :", backwards"
+::""
+] &
+[
+:and(17,%3) == 1 :", background"
+:and(17,%3) == 16 :", carry"
+:and(17,%3) == 17 :", stop std carry"
+::""
+]
+& ")"
+; "xevt" from *.cmx.bcf
+& " {return event in " &
+[
+;text(132,25)="Local Variable"
+:and(32,%3) == 32 : text(132,25)& " " & %1
+; text(132,9)="Parametrs"
+::text(132,9) & " 0"
+]
+; ??
+& "} {flags = " & (and(8,%3)/8) & ", "& (and(32,%3)/32) & "}"
+];
+
+; decoder for the 'Go To Routing Slot' primitive
+prim45(3) = text(139,45) & " (" &
+[
+:%1 == 0 :"in " & data(9,%0)
+:%1 == 1 :"#" & %0
+:%1 == 2 :"global: #" & %0
+::"??? " & %0
+] &
+[
+:and(1,%2) == 1 :", no failure trees"
+::""
+] & ")";
+
+; decoder for the 'Snap' primitive
+prim46(3) = text(139,46) & " (" & text(207,%1) &
+[
+:%1 == 0 || %1 == 3 || %1 == 4 : " " & %0
+::""
+] &
+[
+:and(2,%2) == 2 :", ask person to move"
+::""
+] &
+[
+:and(4,%2) == 4 :", use footprint"
+] & ")";
+
+; decoder for the 'Reach' primitive
+prim47(3) = text(139,47) & " (" &
+[
+:%0 == 0 :"to stack object" &
+[
+:%1 == 0 :" and do not attempt to grab it"
+::" and attempt to grab it"
+]
+:%0 == 1 :"to slot on stack object with index in " & data(9,%2) &
+[
+:%1 == 0 :" and do not attempt to drop onto it"
+::" and attempt to drop onto it"
+]
+:%0 == 2 :"to mouth"
+::""
+] & ")";
+
+
+; decoder for the 'Stop ALL Sounds' primitive
+prim48(1) = text(139,48) & " (" &
+[
+:%0 == 0 :"of me"
+::"of stack object"
+] & ")";
+
+; decoder for the 'Add/Change the Action String' primitive
+prim50(2) = text(139,50) & " (STR#" & %0 & ":" & (%1-1) & ")";
+
+; decoder for the 'Manage Inventory' primitive
+prim51(9) = text(139,%0) &
+[
+:and(32,%4) == 32 :" (Using Inventory of object in Temp 4)"
+::""
+]
+& " (" &
+[
+:%1 == 0 :"Add token of type"
+:%1 == 1 :"Remove token of type"
+:%1 == 2 :"Remove token at index"
+:%1 == 3 :"Find token of type"
+:%1 == 4 :"Set to next token of type"
+:%1 == 5 :"Add Downtown Date Token of Neighbor from NeighborID in Temp."
+:%1 == 6 :"Add Back Home Date Token of Neighbor from NeighborID in Temp."
+::""
+] &
+[
+: %1 == 0 || %1 == 1 || %1 == 3 || %1 == 4 :
+[
+:%2 == 0 :" GIFT"
+:%2 == 1 || %2 == 3 :" DATE"
+:%2 == 2 :" SIMDATA"
+:%2 == 4 :" PURCHASE"
+:%2 == 5 :" SOUVENIR"
+:%2 == 6 :" SKILL"
+::""
+]
+::""
+] &
+[
+:and(1,%3) == 1 : " with object " &
+[
+:long(%8,%7,%6,%5) == 0 : "from Stack Object's GUID"
+:: guid(%5,%6,%7,%8)
+]
+::""
+] &
+[
+:%1 == 2 :[:and(128,%3) == 128 :" stored in Temp " & and(3,%4) ::" 0"]
+:%1 == 4 : " starting at index" &
+[:and(128,%3) == 128 :" stored in Temp " & and(3,%4) ::" 0"]
+::""
+] &
+[
+:%1 == 0 || %1 == 1 || %1 == 2
+:" of count " &
+[
+:and(2,%3) == 2 :"stored in Temp " & (and(12,%3)/4) & "."
+::"1."
+]
+:%1 == 3 || %1 == 4
+:". Returning count to Temp " & (and(96,%3)/32) &
+ " and index to Temp " & (and(24,%3)/8) & "."
+::""
+]
+& ")"
+& " {flags = " & (and(16,%3)/16) & ", " & (and(4,%4)/4) & ", "
+& (and(64,%4)/64) & ", " & (and(128,%3)/128) & "}";
+
+
+
+
+; decodes guid
+guid(4) = "GUID:" & hex(%3) & hex(%2) & hex(%1) & hex(%0);
+
+; decodes data (two parameters: owner and index)
+data(2) = [
+:%0==3||%0==4||%0==5
+:text(132,%0)&" "&text(141,%1)
+:%0==6
+:text(132,%0)&" "&text(129,%1)
+:%0==7
+:%1
+:%0==10
+:[:%1==0:text(132,%0)::"invalid"]
+:%0==12||%0==14||%0==15||%0==28||%0==29
+:text(132,%0)&" "&text(134,%1)
+:%0==18||%0==19||%0==32
+:text(132,%0)&" "&text(200,%1)
+:%0==21
+:text(132,%0)&" "&text(204,%1)
+:%0==23
+:text(132,%0)&" "&text(219,%1)
+:%0==24
+:text(132,%0)&" "&text(221,%1)
+:%0==26
+:data26(shr(%1,13),and(shr(%1,7),63),and(%1,127))
+:%0==33
+:text(132,%0)&" "&text(243,%1)
+:%0==34
+:text(132,%0)&" "&text(249,%1)
+:%0==35
+:text(132,%0)&" "&text(245,%1)
+::text(132,%0)&" "&%1];
+
+; special custom decoder for the constants
+data26(3) = "Constant " & [:%0==0:%1+4096:%0==1:%1+256:%0==2:%1+8192::"unknown"] & ":" & %2;
+

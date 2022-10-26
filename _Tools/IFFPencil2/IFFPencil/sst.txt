@@ -1,0 +1,28 @@
+; Scripted Simantics Translation file
+; Written by Tom van Dijk, 2002
+
+; Syntax info:
+; function/subroutine is defined like <functionname>(<number_of_parameters>) = <functionbody>;
+; Use ; to end the subroutine as well as to define 'comments' (like this one)
+; You can call other subroutines like this: <functionname>(<parameter_1>, <parameter_2>, <parameter_n>)
+; If you call with <functionname>(%%) then all variables of the current subroutine are passed through
+; The number of parameters MUST be the same as the amount of parameters expected
+; You can use these operators to link things: & (for strings), +, -, *, /
+; You can use these internal functions:
+; - char, short, long = convert to this type. Example: short(%1,%2) converts the two 1-byte numbers to one 2-byte number
+; - and, or, xor, shl, shr = binary bit operations (these want two parameters)
+; - str = convert to string (not really needed, since every variable is both a string and a number)
+; - hex = convert to HEX number (you can't reverse this)
+; - text = retrieve text from Behavior.iff (needs two parameters: STR# id and index)
+; - default = default behavior (9 parameters, just like main)
+; - function = this will - in the future - convert function numbers to names. Haven't done this yet.
+;
+; All subroutines start with a letter. Only use 'a' through 'z'.
+; Access parameters like this: %<parameternumber>, where <parameternumber> starts with 0 for the first parameter
+; You can use if statements like this: [:<condition>:<action>:<condition2>:<action2>::<defaultaction>]
+; The first condition that is true will be executed and the other actions will be ignored
+; you can use ==, !=, <=, >=, < and > to compare things and || and && to make things even more complex
+;
+; You can use ( and ) to nest conditions, actions, etc.
+;
+; Gee, can't believe I made my own scripting language! ;-)
