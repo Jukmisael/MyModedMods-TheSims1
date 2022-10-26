@@ -4,6 +4,10 @@
 
 Os Arquivos prontos estão dentro da pasta de cada MOD/Stable, pastas WIP é o que está em desenvolvimento e a pasta Stock é onde se encontra o arquivo original com todos os Direitos reservado aos mesmos.
 
+Os arquivos pretendidos estão todos nas pastas separadas por tipo (lembre-se que alguns Mods precisam de arquivos em outras pastas (Skin, Áudio e etc) então ao baixar verifique nas outras pastas arquivos com o mesmo nome)
+
+ADENDO:::: Arquivos marcados como *-full.zip já estão com todos os arquivos necessários.
+
 
 -Versões estáveis:
 
