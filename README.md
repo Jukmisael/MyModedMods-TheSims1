@@ -8,6 +8,10 @@ Os arquivos pretendidos estão todos nas pastas separadas por tipo (lembre-se qu
 
 ADENDO:::: Arquivos marcados como *-full.zip já estão com todos os arquivos necessários.
 
+Créditos ao Pack desses mods:
+https://sims1.aroundthesims3.com
+http://www.somesimthings.com
++ Entre outros, perdão se faltou.
 
 -Versões estáveis:
 

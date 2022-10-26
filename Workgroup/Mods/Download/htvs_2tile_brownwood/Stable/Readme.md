@@ -1,0 +1,1 @@
+- Nome e Descrição Traduzido

@@ -1,0 +1,1 @@
+- Realocado no catálogo para Lareira
