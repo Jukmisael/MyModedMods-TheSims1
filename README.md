@@ -11,6 +11,6 @@ Os Arquivos prontos estão dentro da pasta de cada MOD/Stable, pastas WIP é o q
 Desc: Contrate um fazendeiro para te ajudar nas plantações!
 
 [LaptopSilver](/Workgroup/Mods/Download/hcomputers_laptopsilver/Stable)
-Des: Laptop Silver, permite que você trabalhe Home Office.
+Desc: Laptop Silver, permite que você trabalhe Home Office.
 
 WIP.
