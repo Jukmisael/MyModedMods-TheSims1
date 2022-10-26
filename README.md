@@ -10,7 +10,7 @@ Os Arquivos prontos estão dentro da pasta de cada MOD/Stable, pastas WIP é o q
 [FarmerWork](/Workgroup/Mods/Download/Farmworker/Stable)
 Desc: Contrate um fazendeiro para te ajudar nas plantações!
 
-[FarmerWork](/Workgroup/Mods/Download/hcomputers_laptopsilver/Stable)
-Des: Notebook Silver, permite que você trabalhe Home Office.
+[LaptopSilver](/Workgroup/Mods/Download/hcomputers_laptopsilver/Stable)
+Des: Laptop Silver, permite que você trabalhe Home Office.
 
 WIP.
