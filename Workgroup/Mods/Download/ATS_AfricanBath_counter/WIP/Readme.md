@@ -1,0 +1,1 @@
+- Adicionado Tradução PTBR

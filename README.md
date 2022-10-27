@@ -11,6 +11,7 @@ ADENDO:::: Arquivos marcados como *-full.zip já estão com todos os arquivos ne
 Créditos ao Pack desses mods:
 https://sims1.aroundthesims3.com
 http://www.somesimthings.com
+http://aroundthesims.online.fr/
 + Entre outros, perdão se faltou.
 
 -Versões estáveis:
@@ -22,3 +23,6 @@ Desc: Contrate um fazendeiro para te ajudar nas plantações!
 Desc: Laptop Silver, permite que você trabalhe Home Office.
 
 WIP.
+
+CTSS = Nome e Descrição do Item
+STRG# = Todas as Strings do Item ( Marcados com "!" são Variavéis?)

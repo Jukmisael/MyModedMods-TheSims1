@@ -1,3 +1,4 @@
+- Adiionado PTBR
 - Traduzido "Work From Home" ao usar
 - Preço balanceado
 - Nome e Descrição traduzidos

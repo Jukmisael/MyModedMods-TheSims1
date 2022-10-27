@@ -1,6 +1,5 @@
+-*- Adicionar tradução PTBR
 -*- Traduzido "Work From Home" ao usar
 -*- Preço balanceado
--*- Nome e Descrição traduzidos
+-*- Nome e Descrição atualizados
 -*- Traduzir PopUp's após o trabalho/Estudo pelo PC
-
-- ?
