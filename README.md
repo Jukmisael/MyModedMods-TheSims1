@@ -25,7 +25,10 @@ Desc: Contrate um fazendeiro para te ajudar nas plantações!
 [LaptopSilver](/Workgroup/Mods/Download/hcomputers_laptopsilver/Stable)
 Desc: Laptop Silver, permite que você trabalhe Home Office.
 
+
+
 WIP.
 
+* Usando iFFPencil2 (está em [_Tools](/Workgroup/_Tools_)
 CTSS = Nome e Descrição do Item
 STRG# = Todas as Strings do Item ( Marcados com "!" são Variavéis?)
