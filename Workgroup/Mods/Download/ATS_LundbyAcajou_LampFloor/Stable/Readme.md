@@ -1,0 +1,1 @@
+- Fix arquivo não era reconhecido pelo jogo

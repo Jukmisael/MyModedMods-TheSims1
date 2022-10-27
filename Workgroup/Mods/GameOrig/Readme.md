@@ -1,0 +1,1 @@
+Pasta GameOrig são para Mods que exigem uma instalação com muitos arquivos em várias pastas diferentes que substituem os originais
