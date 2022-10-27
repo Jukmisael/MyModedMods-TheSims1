@@ -7,12 +7,12 @@ Os Arquivos prontos estão dentro da pasta de cada MOD/Stable, pastas WIP é o q
 Os arquivos pretendidos estão todos nas pastas separadas por tipo (lembre-se que alguns Mods precisam de arquivos em outras pastas (Skin, Áudio e etc) então ao baixar verifique nas outras pastas arquivos com o mesmo nome)
 
 ADENDO:::: Arquivos marcados como *-full.zip já estão com todos os arquivos necessários.
-
 Créditos ao Pack desses mods:
 https://sims1.aroundthesims3.com
 http://www.somesimthings.com
 http://aroundthesims.online.fr/
-+ Entre outros, perdão se faltou.
+
+Entre outros, perdão se faltou.
 
 -Versões estáveis:
 
